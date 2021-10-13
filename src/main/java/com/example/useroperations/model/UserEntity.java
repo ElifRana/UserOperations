@@ -1,5 +1,6 @@
 package com.example.useroperations.model;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -34,6 +35,7 @@ public class UserEntity {
 
     @Email
     @Column(name = "email")
+    @ApiModelProperty(notes = "Person Email", example = "aa@gmail.com")
     private String email;
 
     @Column(name = "actived")

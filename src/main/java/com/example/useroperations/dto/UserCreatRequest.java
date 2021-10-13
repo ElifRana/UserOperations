@@ -1,5 +1,6 @@
 package com.example.useroperations.dto;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 import javax.validation.constraints.*;
@@ -20,6 +21,7 @@ public class UserCreatRequest {
     private String userName;
 
     @Email
+    @ApiModelProperty(notes = "Person Email", example = "aa@gmail.com")
     private String email;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")

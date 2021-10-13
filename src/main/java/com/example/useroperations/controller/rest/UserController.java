@@ -1,9 +1,10 @@
-package com.example.useroperations.controller;
+package com.example.useroperations.controller.rest;
 
 import com.example.useroperations.dto.UserCreatRequest;
 import com.example.useroperations.dto.UserUpdateRequest;
 import com.example.useroperations.model.UserEntity;
 import com.example.useroperations.service.UserService;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,7 +20,7 @@ public class UserController {
     }
 
     @GetMapping("/user/{id}")
-    public UserEntity getUser(int id) {
+    public UserEntity getUser(@ApiParam(type = "int", value = "Existing person ID", required = true)@PathVariable int id) {//@pathVariable
         return userService.getUser(id);
     }
 

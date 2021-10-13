@@ -7,6 +7,9 @@ import com.example.useroperations.exception.UserIdAlreadyExistsException;
 import com.example.useroperations.exception.UserNameAlreadyExistsException;
 import com.example.useroperations.exception.UserNotFoundException;
 import com.example.useroperations.model.UserEntity;
+import lombok.extern.log4j.Log4j;
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,11 +17,14 @@ import com.example.useroperations.repository.UserRepository;
 import java.util.Optional;
 
 @Service
+@Log4j
 public class UserServiceImpl implements UserService {
 
+   // private static final Logger logger = Logger.getLogger(UserServiceImpl.class);
     private UserRepository userRepository;
     // ModelMapper: Bir nesne modelinin Dto adındaki nesne modeliyle eşlenmesi için kullanılır.
     private ModelMapper modelMapper;
+
 
     @Autowired // UserRepository'ye karşılık gelen sınıfı arıyor
     // Constructor, degişken, setter metodlar için dependeny injection işlemini yapar
@@ -51,7 +57,8 @@ public class UserServiceImpl implements UserService {
         }
 
         UserEntity userEntity = modelMapper.map(userCreatRequest, UserEntity.class);
-
+        //PropertyConfigurator.configure("src/main/resources/log4j.properties");
+        log.info("Kullanıcı oluşturuldu.");
         return userRepository.save(userEntity);
     }
 
@@ -73,7 +80,8 @@ public class UserServiceImpl implements UserService {
         if(newUser.getUserName() != userUpdateRequest.getUserName() && optinalUser.isPresent() ) {
             throw new UserNameAlreadyExistsException();
         }
-
+       // PropertyConfigurator.configure("src/main/resources/log4j.properties");
+        log.info("Kullanıcı güncellendi");
         return userRepository.save(newUser);
     }
 
@@ -81,5 +89,7 @@ public class UserServiceImpl implements UserService {
     public void deleteUser(int id) {
         UserEntity userEntity = userRepository.findById(id).orElseThrow(UserNotFoundException::new);
         userRepository.delete(userEntity);
+       // PropertyConfigurator.configure("src/main/resources/log4j.properties");
+        log.info("Kullanıcı silindii");
     }
 }
