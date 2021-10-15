@@ -7,7 +7,8 @@ import javax.validation.constraints.*;
 import java.time.LocalDate;
 
 @Data
-public class UserUpdateRequest {
+public class UserRequest {
+
     private int id;
 
     @Size(min = 2, max = 15)

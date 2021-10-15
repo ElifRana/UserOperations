@@ -1,7 +1,6 @@
 package com.example.useroperations.controller.rest;
 
-import com.example.useroperations.dto.UserCreatRequest;
-import com.example.useroperations.dto.UserUpdateRequest;
+import com.example.useroperations.dto.UserRequest;
 import com.example.useroperations.model.UserEntity;
 import com.example.useroperations.service.UserService;
 import io.swagger.annotations.ApiParam;
@@ -25,13 +24,13 @@ public class UserController {
     }
 
     @PostMapping("/user")
-    public UserEntity createUser(@RequestBody UserCreatRequest userCreatRequest) {
-        return userService.createUser(userCreatRequest);
+    public UserEntity createUser(@RequestBody UserRequest userRequest) {
+        return userService.createUser(userRequest);
     }
 
     @PutMapping("/user/{id}")
-    public UserEntity updateUser(@PathVariable("id") int id, @RequestBody UserUpdateRequest userUpdateRequest) {
-        return userService.updateUser(id, userUpdateRequest);
+    public UserEntity updateUser(@PathVariable("id") int id, @RequestBody UserRequest userRequest) {
+        return userService.updateUser(id, userRequest);
     }
 
     @DeleteMapping("user/{id}")

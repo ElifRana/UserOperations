@@ -1,18 +1,15 @@
 package com.example.useroperations.service;
 
-import com.example.useroperations.dto.UserCreatRequest;
-import com.example.useroperations.dto.UserUpdateRequest;
+import com.example.useroperations.dto.UserRequest;
 import com.example.useroperations.model.UserEntity;
-import org.springframework.context.annotation.Profile;
-import org.springframework.stereotype.Component;
 
 public interface UserService {
 
     UserEntity getUser(int id);
 
-    UserEntity createUser(UserCreatRequest userCreatRequestDto);
+    UserEntity createUser(UserRequest userRequest);
 
-    UserEntity updateUser(int id, UserUpdateRequest userUpdateRequest);
+    UserEntity updateUser(int id, UserRequest userRequest);
 
     void deleteUser(int id);
 }
